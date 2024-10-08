@@ -1,9 +1,8 @@
 const db = require('../config/db');
 
 const getAllFood = async () => {
-    const query = "SELECT * FROM tblfood";
+    const query = "SELECT f.id, f.title,c.name, f.price,f.description FROM tblfood AS f INNER JOIN tblcategory AS c on f.cat_id = c.id";
     const records = await db.promise().query(query)
-    .catch(err => console.log(err))
     return records[0];
 }
 

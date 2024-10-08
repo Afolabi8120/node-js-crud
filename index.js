@@ -10,6 +10,7 @@ app.use(
     extended: true,
   })
 );
+
 app.use(express.static('public'));
 app.set('view engine','ejs');
 
@@ -25,9 +26,9 @@ app.use("/category", categoryRoute);
 app.use("/user", userRoute);
 app.use("/auth", authRoute);
 
-app.get('/', async (req, res, foodRoute) => {
-  await res.render('pages/index');
-});
+// app.get('/', async (req, res) => {
+//   await res.render('pages/index');
+// });
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
