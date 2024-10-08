@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+    <title>Add Food</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    
+  </head>
+  <body>
+  
+  <div class="container mt-3">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header h3">Add Food Details</div>
+        <div class="card-body">
+          <form action="/foods" method="POST">
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label class="mb-2">Food Name</label>
+                <input type="text" name="title" class="form-control" placeholder="e.g. Chicken Laps" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label class="mb-2">Category</label>
+                <select name="cat_id" class="form-control" required>
+                  <% 
+                    if(category) {
+                      for(var i = 0; i < category.length; i++) {
+                  %>
+                  <option value="<%= category[i].id %>"><%= category[i].name %></option>
+                  <% }
+                  }
+                  %>
+                </select>
+              </div>
+              <div class="form-group col-md-4">
+                <label class="mb-2">Price</label>
+                <input type="number" name="price" class="form-control" placeholder="e.g. 100.00" required>
+              </div>
+              <div class="form-group col-md-4">
+                <label class="mb-2">Image</label>
+                <input type="file" name="image" class="form-control">
+              </div>
+              <div class="form-group col-md-4">
+                <label class="mb-2">Status</label>
+                <select name="status" class="form-control">
+                  <option value="1">Available</option>
+                  <option value="0">Not Available</option>
+                </select>
+              </div>
+              <div class="form-group col-md-12">
+                <label class="mb-2">Desciption</label>
+                <textarea name="description" class="form-control"></textarea>
+              </div>
+              <div class="form-group col-md-12">
+                <input type="submit" value="Add Food" name="btnAddFood" class="btn btn-primary mt-3">
+              </div>
+              
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12 mt-4">
+      <div class="card">
+        <div class="card-header h3">All Added Foods</div>
+        <div class="card-body">
+          <table id="basic" class="table table-responsive">
+            <thead>
+              <tr>
+                <th>S/N</th>
+                <th>Food Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% 
+                if(foods) {
+                  for(var i = 0; i < foods.length; i++) { 
+              %>
+              <tr>
+                <td><%= (i + 1) %></td>
+                <td><%= foods[i].title %></td>
+                <td><%= foods[i].name %></td>
+                <td><%= foods[i].price %></td>
+                <td>
+                  <a href="foods/<%= foods[i].id %>" class="btn btn-warning btn-sm">Edit</a>
+                  <a href="foods/delete/<%= foods[i].id %>" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+              </tr>
+              <% 
+                }
+              }
+              %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/bootstrap/css/bootstrap.min.js"></script>
+    
+  </body>
+
+</html>
